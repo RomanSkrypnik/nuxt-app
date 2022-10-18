@@ -1,39 +1,32 @@
 <template>
-    <form class='row flex-center flex' @submit.prevent='handleLogin'>
-        <div class='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
-            <div class='mb-4'>
-                <label class='block text-grey-darker text-sm font-bold mb-2' for='username'>
-                    Username
-                </label>
-                <input class='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                       id='username'
-                       type='email'
-                       placeholder='Your email'
-                       v-model='email'
-                >
-            </div>
-            <div class='mb-4'>
-                <label class='block text-grey-darker text-sm font-bold mb-2' for='password'>
-                    Password
-                </label>
-                <input class='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                       id='password'
-                       type='email'
-                       placeholder='Your password'
-                       v-model='password'
-                >
-            </div>
-            <div>
+    <Card>
+        <form @submit.prevent='handleLogin'>
+            <h2 class='font-medium leading-tight text-4xl mt-0 mb-4 text-center'>Login</h2>
+            <TextInput
+                class-name='mb-4'
+                type='email'
+                placeholder='Your email'
+                v-model='email'
+            />
+            <TextInput
+                class-name='mb-4'
+                type='password'
+                placeholder='Your password'
+                v-model='password'
+            />
+            <div class='flex items-center flex-col'>
                 <button class='bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded'>
                     Sign In
                 </button>
-                <NuxtLink to='/register' class='block text-blue-700'>Click here to register</NuxtLink>
+                <NuxtLink to='/register' class='text-blue-700 mt-3'>Click here to register</NuxtLink>
             </div>
-        </div>
-    </form>
+        </form>
+    </Card>
 </template>
 
 <script setup>
+import TextInput from '../components/TextInput';
+
 const supabase = useSupabaseClient();
 
 const loading = ref(false);
@@ -43,7 +36,7 @@ const password = ref('');
 const handleLogin = async () => {
     try {
         loading.value = true;
-        const { error } = await supabase.auth.signIn({ email: email.value });
+        const { error } = await supabase.auth.signIn({ email: email.value, password: password.value });
         if (error) throw error;
         alert('Check your email for the login link!');
     } catch (error) {
