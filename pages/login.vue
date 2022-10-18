@@ -36,9 +36,7 @@ const password = ref('');
 
 const handleLogin = async () => {
     try {
-        const { error } = await supabase.auth.signInWithPassword({ email: email.value, password: password.value });
-        if (error) throw error;
-        alert('Check your email for the login link!');
+        await supabase.auth.signInWithPassword({ email: email.value, password: password.value });
     } catch (error) {
         alert(error.error_description || error.message);
     }

@@ -35,8 +35,7 @@ const password = ref('');
 
 const handleRegister = async () => {
     try {
-        const { error } = await supabase.auth.signUp({ email: email.value, password: password.value });
-        if (error) throw error;
+        await supabase.auth.signUp({ email: email.value, password: password.value });
         alert('Check your email for the login link!');
     } catch (error) {
         alert(error.error_description || error.message);
