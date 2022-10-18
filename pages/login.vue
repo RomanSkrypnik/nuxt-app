@@ -23,10 +23,11 @@
                        v-model='password'
                 >
             </div>
-            <div class='flex items-center justify-between'>
-                <button class='bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded'>
+            <div>
+                <button class='bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded'>
                     Sign In
                 </button>
+                <NuxtLink to='/register' class='block text-blue-700'>Click here to register</NuxtLink>
             </div>
         </div>
     </form>
