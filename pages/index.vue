@@ -31,6 +31,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+    middleware: 'auth'
+})
+
 const supabase = useSupabaseClient()
 
 const loading = ref(true)

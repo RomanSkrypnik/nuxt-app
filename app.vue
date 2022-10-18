@@ -1,11 +1,10 @@
 <template>
     <div class='h-screen flex content-center justify-center'>
-        <Account v-if="user" />
-        <Auth v-else />
+        <NuxtPage/>
     </div>
 </template>
 
 <script setup>
 
-const user = useSupabaseUser()
+const user = useSupabaseUser();
 </script>

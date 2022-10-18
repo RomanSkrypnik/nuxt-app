@@ -1,5 +1,5 @@
 <template>
-    <form class='row flex-center flex' @submit.prevent='handleLogin'>
+    <form class='row flex-center flex' @submit.prevent='handleRegister'>
         <div class='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
             <div class='mb-4'>
                 <label class='block text-grey-darker text-sm font-bold mb-2' for='username'>
@@ -38,10 +38,10 @@ const supabase = useSupabaseClient();
 const loading = ref(false);
 const email = ref('');
 const password = ref('');
-const handleLogin = async () => {
+const handleRegister = async () => {
     try {
         loading.value = true;
-        const { error } = await supabase.auth.signIn({ email: email.value });
+        const { error } = await supabase.auth.signUp({ email: email.value });
         if (error) throw error;
         alert('Check your email for the login link!');
     } catch (error) {
