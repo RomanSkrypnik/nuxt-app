@@ -15,9 +15,7 @@
                 v-model='password'
             />
             <div class='flex items-center flex-col'>
-                <Button type='submit'>
-                    Sign In
-                </Button>
+                <Button type='submit'>Sign In</Button>
                 <NuxtLink to='/register' class='text-blue-700 mt-3'>Click here to register</NuxtLink>
             </div>
         </form>

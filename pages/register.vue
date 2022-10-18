@@ -15,9 +15,7 @@
                 v-model='password'
             />
             <div class='flex items-center flex-col'>
-                <Button type='submit'>
-                    Sign Up
-                </Button>
+                <Button type='submit'>Sign Up</Button>
             </div>
         </form>
     </Card>
