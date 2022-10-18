@@ -1,6 +1,11 @@
 <template>
-    <NuxtPage />
+    <div class='h-screen flex content-center justify-center'>
+        <Account v-if="user" />
+        <Auth v-else />
+    </div>
 </template>
-<script>
-import '@/assets/styles/main.scss'
+
+<script setup>
+
+const user = useSupabaseUser()
 </script>
