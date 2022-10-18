@@ -5,7 +5,7 @@
         :type='type'
         :placeholder='placeholder'
         v-model='modelValue'
-        @input='onInput'
+        @input='updateValue'
     >
 </template>
 
