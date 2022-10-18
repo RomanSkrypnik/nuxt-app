@@ -35,7 +35,7 @@ definePageMeta({
     middleware: 'auth'
 })
 
-const supabase = useSupabaseClient()
+const supabase = useSupabaseClient();
 
 const loading = ref(true)
 const username = ref('')

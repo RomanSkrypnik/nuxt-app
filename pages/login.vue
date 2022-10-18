@@ -25,25 +25,23 @@
 </template>
 
 <script setup>
+import Card from '../components/Card';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 
 const supabase = useSupabaseClient();
 
-const loading = ref(false);
 const email = ref('');
 const password = ref('');
 
 const handleLogin = async () => {
     try {
-        loading.value = true;
-        const { error } = await supabase.auth.signIn({ email: email.value, password: password.value });
+        const { error } = await supabase.auth.signInWithPassword({ email: email.value, password: password.value });
         if (error) throw error;
         alert('Check your email for the login link!');
     } catch (error) {
         alert(error.error_description || error.message);
-    } finally {
-        loading.value = false;
     }
 };
+
 </script>
