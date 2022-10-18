@@ -32,6 +32,16 @@ const supabase = useSupabaseClient();
 const email = ref('');
 const password = ref('');
 
+const user = useSupabaseUser();
+
+onMounted(() => {
+    watchEffect(() => {
+       if (user.value) {
+            navigateTo('/');
+       }
+    });
+});
+
 const handleLogin = async () => {
     try {
         await supabase.auth.signInWithPassword({ email: email.value, password: password.value });

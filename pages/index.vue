@@ -1,12 +1,15 @@
 <template>
     <Card>
-        <h2>Welcome {{ data.username }} !</h2>
-        <h2>{{ data.website }}</h2>
+        <div class='flex flex-col items-center'>
+            <h2 class='font-medium leading-tight text-1xl mt-0 mb-2'>Welcome {{ user?.email }} !</h2>
+            <Button class-name='mt-2' @click='signOut'>Sign out</Button>
+        </div>
     </Card>
 </template>
 
 <script setup>
 import Card from '../components/Card';
+import Button from '../components/Button';
 
 definePageMeta({
     middleware: 'auth',
@@ -15,12 +18,6 @@ definePageMeta({
 const supabase = useSupabaseClient();
 
 const user = useSupabaseUser();
-
-let { data } = await supabase
-    .from('profiles')
-    .select(`username, website, avatar_url`)
-    .eq('id', user.value.id)
-    .single();
 
 async function signOut() {
     try {
