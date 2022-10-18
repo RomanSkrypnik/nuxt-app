@@ -15,9 +15,9 @@
                 v-model='password'
             />
             <div class='flex items-center flex-col'>
-                <button class='bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded'>
+                <Button type='submit'>
                     Sign In
-                </button>
+                </Button>
                 <NuxtLink to='/register' class='text-blue-700 mt-3'>Click here to register</NuxtLink>
             </div>
         </form>
@@ -26,6 +26,7 @@
 
 <script setup>
 import TextInput from '../components/TextInput';
+import Button from '../components/Button';
 
 const supabase = useSupabaseClient();
 
