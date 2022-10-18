@@ -1,16 +1,11 @@
 <template>
     <div class='flex justify-center h-screen items-center'>
-        <NuxtPage />
+        <NuxtPage v-if='user' />
+        <Auth v-else />
     </div>
 </template>
 <script setup>
-import { navigateTo } from 'nuxt/app';
+import Auth from './components/Auth';
 
-const supabase = useSupabaseClient();
-
-supabase.auth.onAuthStateChange((event, session) => {
-    if (event === 'SIGNED_OUT') {
-        navigateTo('/login');
-    }
-});
+const user = useSupabaseUser();
 </script>

@@ -11,10 +11,6 @@
 import Card from '../components/Card';
 import Button from '../components/Button';
 
-definePageMeta({
-    middleware: 'auth',
-});
-
 const supabase = useSupabaseClient();
 
 const user = useSupabaseUser();
