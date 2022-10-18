@@ -2,26 +2,22 @@
     <Card>
         <form @submit.prevent='handleRegister'>
             <h2 class='font-medium leading-tight text-4xl mt-0 mb-4 text-center'>Register</h2>
-            <div class='mb-4'>
-                <input class='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                       id='username'
-                       type='email'
-                       placeholder='Your email'
-                       v-model='email'
-                >
-            </div>
-            <div class='mb-4'>
-                <input class='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                       id='password'
-                       type='email'
-                       placeholder='Your email'
-                       v-model='password'
-                >
-            </div>
-            <div class='flex items-center justify-center'>
-                <button class='bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded'>
+            <TextInput
+                class-name='mb-4'
+                type='email'
+                placeholder='Your email'
+                v-model='email'
+            />
+            <TextInput
+                class-name='mb-4'
+                type='password'
+                placeholder='Your password'
+                v-model='password'
+            />
+            <div class='flex items-center flex-col'>
+                <Button type='submit'>
                     Sign Up
-                </button>
+                </Button>
             </div>
         </form>
     </Card>
