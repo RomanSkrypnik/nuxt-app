@@ -2,7 +2,6 @@
     <input
         class='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
         :class='className'
-        id='password'
         :type='type'
         :placeholder='placeholder'
         v-model='modelValue'
