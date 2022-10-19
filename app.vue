@@ -1,7 +1,7 @@
 <template>
-    <div class='flex justify-center h-screen items-center'>
+    <NuxtLayout>
         <NuxtPage />
-    </div>
+    </NuxtLayout>
 </template>
 <script setup>
 const supabase = useSupabaseClient();

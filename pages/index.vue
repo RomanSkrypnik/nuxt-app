@@ -13,7 +13,7 @@ import Button from '../components/Button';
 
 import { FetchError } from 'ohmyfetch';
 
-definePageMeta({ middleware: 'auth' });
+definePageMeta({ middleware: 'auth', layout: 'authorized' });
 
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
