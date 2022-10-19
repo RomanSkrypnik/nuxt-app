@@ -34,7 +34,12 @@ import Card from '../components/Card';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 
+definePageMeta({
+    middleware: 'not-authorized',
+});
+
 const supabase = useSupabaseClient();
+const user = useSupabaseUser();
 
 const email = ref('');
 const password = ref('');
