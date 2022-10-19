@@ -1,12 +1,8 @@
 <template>
     <Menu as='div' class='relative inline-block text-left'>
-        <MenuButton
-            class='inline-flex w-full justify-center bg-white text-sm font-medium text-gray-700'>
+        <MenuButton class='inline-flex w-full justify-center bg-white text-sm font-medium text-gray-700'>
             <div class='block lg:flex lg:items-center lg:w-auto'>
-                <img class='inline-block h-10 w-10 rounded-full ring-2 ring-white'
-                     src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-                     alt='Avatar'
-                >
+                <img class='inline-block h-10 w-10 rounded-full ring-2 ring-white' :src='props.src' alt='Avatar'>
             </div>
         </MenuButton>
         <transition
@@ -34,6 +30,7 @@
 
 <script setup lang='ts'>
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
+import img from '@/assets/images/avatar.png';
 
 interface Props {
     click?: () => void;
@@ -41,5 +38,7 @@ interface Props {
     items?: { label: String, click: Function }[];
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+    src: img,
+});
 </script>
