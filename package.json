@@ -24,6 +24,7 @@
     "@heroicons/vue": "^2.0.12",
     "@nuxtjs/tailwindcss": "^5.3.5",
     "defu": "^6.1.0",
-    "sass": "^1.55.0"
+    "sass": "^1.55.0",
+    "vue-query": "^1.26.0"
   }
 }

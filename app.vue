@@ -4,14 +4,9 @@
     </NuxtLayout>
 </template>
 <script setup>
-const supabase = useSupabaseClient();
+import { useQueryProvider } from 'vue-query';
+import { useAuthState } from './hooks';
 
-supabase.auth.onAuthStateChange((event, session) => {
-    switch (event) {
-        case 'SIGNED_OUT':
-            return navigateTo('/auth');
-        case 'SIGNED_IN':
-            return navigateTo('/');
-    }
-});
+useQueryProvider();
+useAuthState();
 </script>
