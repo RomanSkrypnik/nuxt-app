@@ -7,13 +7,13 @@
             <TextInput
                 class-name='mb-4'
                 type='email'
-                placeholder='Your email'
+                placeholder='Email'
                 v-model='email'
             />
             <TextInput
                 class-name='mb-4'
                 type='password'
-                placeholder='Your password'
+                placeholder='Password'
                 v-model='password'
             />
             <div class='flex items-center flex-col'>

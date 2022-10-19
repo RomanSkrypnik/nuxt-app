@@ -4,7 +4,7 @@
         :class='props.className'
         :type='props.type'
         :placeholder='props.placeholder'
-        v-model='props.modelValue'
+        :value='props.modelValue'
         @input='updateValue'
     >
 </template>
