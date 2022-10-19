@@ -35,7 +35,7 @@ import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 
 definePageMeta({
-    middleware: 'not-authorized',
+   middleware: 'not-authorized'
 });
 
 const supabase = useSupabaseClient();
@@ -54,7 +54,7 @@ const handleLogin = async () => {
         await supabase.auth.signIn({
             email: email.value,
             password: password.value,
-        });
+        }, {redirectTo: 'http://localhost:3000/'});
     } catch (error) {
         alert(error.error_description || error.message);
     }

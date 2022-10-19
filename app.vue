@@ -9,9 +9,9 @@ const supabase = useSupabaseClient();
 supabase.auth.onAuthStateChange((event, session) => {
     switch (event) {
         case 'SIGNED_OUT':
-            return navigateTo('/auth');
+            return setTimeout(() => navigateTo('/auth'), 100);
         case 'SIGNED_IN':
-            setTimeout(() => navigateTo('/'), 1000);
+            setTimeout(() => navigateTo('/'), 100);
     }
 });
 </script>

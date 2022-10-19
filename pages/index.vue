@@ -1,5 +1,5 @@
 <template>
-    <Card>
+    <Card v-if='user'>
         <div class='flex flex-col items-center'>
             <h2 class='font-medium leading-tight text-1xl mt-0 mb-2'>Welcome {{ user?.email }} !</h2>
             <Button class-name='mt-2' @click='signOut'>Sign out</Button>
