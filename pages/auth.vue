@@ -18,9 +18,11 @@
                 v-model='password'
             />
             <div class='flex items-center flex-col'>
-                <Button :disabled='loading' type='submit'>Sign In</Button>
-                <button @click='toggleIsLogin'
-                        class='font-medium text-blue-600 dark:text-blue-500 hover:underline mt-2'>
+                <Button type='submit'>Sign In</Button>
+                <button
+                    type='button'
+                    @click='toggleIsLogin'
+                    class='font-medium text-blue-600 dark:text-blue-500 hover:underline mt-2'>
                     Click here to {{ isLogin ? 'register' : 'login' }}
                 </button>
             </div>
@@ -37,7 +39,6 @@ const supabase = useSupabaseClient();
 
 const email = ref('');
 const password = ref('');
-const loading = ref(false);
 const isLogin = ref(true);
 
 const toggleIsLogin = () => {
@@ -46,12 +47,11 @@ const toggleIsLogin = () => {
 
 const handleLogin = async () => {
     try {
-        loading.value = true;
-        await supabase.auth.signInWithPassword({ email: email.value, password: password.value });
+        const { errors } = await supabase.auth.signInWithPassword({ email: email.value, password: password.value });
+        if (errors) throw errors;
+        setTimeout(() => navigateTo('/'), 1000);
     } catch (error) {
         alert(error.error_description || error.message);
-    } finally {
-        loading.value = false;
     }
 };
 

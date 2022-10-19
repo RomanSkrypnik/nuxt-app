@@ -11,13 +11,17 @@
 import Card from '../components/Card';
 import Button from '../components/Button';
 
-const supabase = useSupabaseClient();
+definePageMeta({
+    middleware: 'auth',
+});
 
+const supabase = useSupabaseClient();
 const user = useSupabaseUser();
 
 async function signOut() {
     try {
         await supabase.auth.signOut();
+        navigateTo('/auth');
     } catch (error) {
         alert(error.message);
     }
