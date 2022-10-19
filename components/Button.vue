@@ -9,7 +9,7 @@
     </button>
 </template>
 
-<script setup>
+<script setup lang='ts'>
 const props = defineProps({
     disabled: {
         type: Boolean,

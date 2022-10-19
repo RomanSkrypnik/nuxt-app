@@ -29,7 +29,7 @@
     </Card>
 </template>
 
-<script setup>
+<script setup lang='ts'>
 import Card from '../components/Card';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';

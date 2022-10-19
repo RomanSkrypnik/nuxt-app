@@ -7,8 +7,8 @@
     </Card>
 </template>
 
-<script setup>
-import Card from '../components/Card';
+<script setup lang='ts'>
+import Card from '@/components/Card';
 import Button from '../components/Button';
 
 definePageMeta({

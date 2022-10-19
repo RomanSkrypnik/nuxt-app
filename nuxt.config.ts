@@ -15,4 +15,7 @@ export default defineNuxtConfig({
         injectPosition: 0,
         viewer: true,
     },
+    typescript: {
+        strict: true,
+    }
 })

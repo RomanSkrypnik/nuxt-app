@@ -9,7 +9,8 @@
     >
 </template>
 
-<script setup>
+<script setup lang='ts'>
+
 const props = defineProps({
     placeholder: String,
     modelValue: String,
@@ -19,7 +20,8 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
-const updateValue = (event) => {
-    emit('update:modelValue', event.target.value);
+const updateValue = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    emit('update:modelValue', target.value);
 };
 </script>
