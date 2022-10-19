@@ -47,9 +47,10 @@ const toggleIsLogin = () => {
 
 const handleLogin = async () => {
     try {
-        const { errors } = await supabase.auth.signInWithPassword({ email: email.value, password: password.value });
-        if (errors) throw errors;
-        setTimeout(() => navigateTo('/'), 1000);
+        await supabase.auth.signIn({
+            email: email.value,
+            password: password.value,
+        });
     } catch (error) {
         alert(error.error_description || error.message);
     }

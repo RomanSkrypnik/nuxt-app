@@ -21,7 +21,6 @@ const user = useSupabaseUser();
 async function signOut() {
     try {
         await supabase.auth.signOut();
-        navigateTo('/auth');
     } catch (error) {
         alert(error.message);
     }
