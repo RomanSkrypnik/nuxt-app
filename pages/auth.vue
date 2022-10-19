@@ -34,9 +34,9 @@ import Card from '../components/Card';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 
-definePageMeta({
-    middleware: 'not-authorized',
-});
+import { FetchError } from 'ohmyfetch';
+
+definePageMeta({ middleware: 'not-authorized' });
 
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
@@ -53,7 +53,9 @@ const handleLogin = async () => {
     try {
         await supabase.auth.signIn({ email: email.value, password: password.value });
     } catch (error) {
-        alert(error.error_description || error.message);
+        if (error instanceof FetchError) {
+            alert(error.message);
+        }
     }
 };
 
@@ -63,7 +65,9 @@ const handleRegister = async () => {
         toggleIsLogin();
         alert('Check your email for the login link!');
     } catch (error) {
-        alert(error.error_description || error.message);
+        if (error instanceof FetchError) {
+            alert(error.message);
+        }
     }
 };
 
