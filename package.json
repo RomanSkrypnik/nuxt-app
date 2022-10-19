@@ -25,6 +25,7 @@
     "@nuxtjs/tailwindcss": "^5.3.5",
     "defu": "^6.1.0",
     "sass": "^1.55.0",
+    "tw-elements": "^1.0.0-alpha12",
     "vue-query": "^1.26.0"
   }
 }

@@ -1,5 +1,5 @@
 <template>
-    <header class='flex items-center justify-between flex-wrap bg-teal p-6'>
+    <header class='flex items-center justify-between flex-wrap bg-teal p-6 shadow-md'>
         <div class='flex items-center flex-no-shrink mr-6'>
             <Logo />
             <span class='font-semibold text-xl'>Tailwind CSS</span>

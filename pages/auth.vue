@@ -31,7 +31,7 @@
 
 <script setup lang='ts'>
 import Card from '../components/Card';
-import TextInput from '../components/TextInput';
+import TextInput from '../components/inputs/TextInput.vue';
 import Button from '../components/Button';
 
 import { FetchError } from 'ohmyfetch';
