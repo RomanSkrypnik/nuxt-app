@@ -1,8 +1,7 @@
 <template>
     <Card>
         <form @submit.prevent='() => (isLogin ? handleLogin() : handleRegister())'>
-            <h2
-                class='font-medium leading-tight text-4xl mt-0 mb-4 text-center'>
+            <h2 class='font-medium leading-tight text-4xl mt-0 mb-4 text-center'>
                 {{ isLogin ? 'Login' : 'Register' }}
             </h2>
             <TextInput
