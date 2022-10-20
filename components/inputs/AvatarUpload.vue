@@ -4,7 +4,7 @@
             <div class='mb-4'>
                 <img
                     class='w-auto mx-auto rounded-full object-cover object-center image'
-                    :src='img'
+                    :src='avatar'
                     alt='Avatar Upload' />
             </div>
             <label class='cursor-pointer mt-6'>
@@ -17,23 +17,32 @@
 
 <script setup lang='ts'>
 import img from '~/assets/images/avatar.png';
+import { ref } from '@vue/reactivity';
 
 interface Props {
+    src?: string;
     className?: string;
 }
 
 const props = defineProps<Props>();
 
-const emit = defineEmits(['update:modelValue']);
+const avatar = ref(props.src ?? img);
+
+const emit = defineEmits(['change']);
 
 const handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement;
-    target.files && emit('update:modelValue', target.files[0]);
+    if (target.files) {
+        const file = target.files[0];
+        avatar.value = URL.createObjectURL(file);
+        target.files && emit('change', file);
+    }
 };
 </script>
 
 <style scoped>
 .image {
     width: 100px;
+    height: 100px;
 }
 </style>
