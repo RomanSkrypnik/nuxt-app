@@ -4,7 +4,7 @@
             <div class='mb-4'>
                 <img
                     class='w-auto mx-auto rounded-full object-cover object-center image'
-                    :src='avatar'
+                    :src='avatar ?? img'
                     alt='Avatar Upload' />
             </div>
             <label class='cursor-pointer mt-6'>
@@ -26,7 +26,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const avatar = ref(props.src ?? img);
+const avatar = ref(props.src);
 
 const emit = defineEmits(['change']);
 
