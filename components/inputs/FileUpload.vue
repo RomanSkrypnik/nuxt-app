@@ -23,8 +23,10 @@ const { placeholder, multiple, className } = withDefaults(defineProps<Props>(), 
     multiple: false,
 });
 
+const emit = defineEmits(['update:modelValue']);
+
 const handleChange = async (e: Event) => {
     const target = e.target as HTMLInputElement;
-    console.log('selected file', target.files);
+    emit('update:modelValue', target.files);
 };
 </script>

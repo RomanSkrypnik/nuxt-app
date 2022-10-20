@@ -14,5 +14,5 @@ export function useFetchCurrentUser() {
         return await supabase.from('profiles').select('username, avatar_url').eq('id', user.value?.id).single();
     };
 
-    return useQuery(['user'], fetch, { select });
+    return useQuery('user', fetch, { select });
 }

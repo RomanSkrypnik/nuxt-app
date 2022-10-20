@@ -9,8 +9,8 @@
 </template>
 
 <script setup lang='ts'>
-import Logo from './Logo.vue';
-import Avatar from './ui/Avatar.vue';
+import Logo from '@/components/Logo.vue';
+import Avatar from '@/components/ui/Avatar.vue';
 
 const supabase = useSupabaseClient();
 
