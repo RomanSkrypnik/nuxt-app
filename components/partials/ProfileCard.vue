@@ -12,28 +12,15 @@
 import Card from '@/components/Card.vue';
 import AvatarUpload from '@/components/inputs/AvatarUpload.vue';
 import { ProfileDto } from '@/types/profile';
-import { useGetFetchQuery, useUpdateAvatar, useUploadAvatar } from '@/hooks';
-import { computed, ref } from '@vue/reactivity';
+import { useGetFetchQuery, useGetPublicUrl, useUpdateAvatar, useUploadAvatar } from '@/hooks';
+import { ref } from '@vue/reactivity';
 import { PostgrestSingleResponse } from '@supabase/postgrest-js';
 import { FileHelper } from '@/helpers';
-
-const config = useRuntimeConfig();
-const supabase = useSupabaseClient();
-
-const src = computed(() => {
-    if (user.value) {
-        const { data } = supabase
-            .storage
-            .from('avatars')
-            .getPublicUrl(user.value.avatar_url);
-        console.log(data);
-        return data?.publicURL;
-    }
-});
 
 const data = useGetFetchQuery('user') as PostgrestSingleResponse<ProfileDto>;
 
 const user = ref<null | ProfileDto>(data?.data);
+const src = useGetPublicUrl(user.value?.avatar_url);
 
 const { mutate: uploadAvatar } = useUploadAvatar();
 const { mutate: updateAvatar } = useUpdateAvatar();
