@@ -1,5 +1,5 @@
 import { useQuery } from 'vue-query';
-import { ProfileDto } from '../types';
+import { ProfileDto } from '@/types';
 import { PostgrestSingleResponse } from '@supabase/postgrest-js';
 
 const select = (data: PostgrestSingleResponse<ProfileDto>) => {
