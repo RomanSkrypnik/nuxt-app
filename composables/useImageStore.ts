@@ -24,9 +24,11 @@ export const useImageStore = defineStore('image', () => {
 
     async function uploadImage(file: File) {
         try {
-            const encrypted = FileHelper.encrypt(file.name, file);
-            await client.storage.from('images').upload(encrypted, file);
-            const { data } = await client.from('images').upsert();
+            const name = FileHelper.encrypt(file.name, file);
+            await client.storage.from('images').upload(name, file);
+            const payload = { name, profileId: user.value?.id };
+            const { data } = await client.from('images').upsert(payload).single();
+            images.value = [...images.value, data];
         } catch (e) {
             throw e;
         }

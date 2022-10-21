@@ -29,7 +29,7 @@ const imageStore = useImageStore();
 const { uploadImage } = imageStore;
 const { images, image } = storeToRefs(imageStore);
 
-if (user.value) imageStore.fetchImages(user.value?.id);
+if (user.value) imageStore.fetchImages('3bcb0b3f-57b4-4aa1-bb90-083cf298dc7f');
 
 const src = useGetPublicUrl(profile.value?.avatarUrl);
 </script>

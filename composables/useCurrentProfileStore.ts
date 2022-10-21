@@ -27,7 +27,10 @@ export const useCurrentProfileStore = defineStore('profile', () => {
 
     async function updateProfile(payload: Partial<ProfileDto>) {
         try {
-            const { data } = await client.from('profiles').upsert(payload, { returning: 'minimal' }).eq('id', user.value?.id).single();
+            const { data } = await client
+                .from('profiles')
+                .upsert({ ...payload, id: user.value?.id }, { returning: 'minimal' })
+                .single();
             profile.value = data;
         } catch (e) {
             throw e;
@@ -48,5 +51,5 @@ export const useCurrentProfileStore = defineStore('profile', () => {
         loading.value = value;
     }
 
-    return { profile, loading, fetchProfile, updateAvatar };
+    return { profile, loading, fetchProfile, updateAvatar, updateProfile };
 });
