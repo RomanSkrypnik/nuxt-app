@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { ProfileDto } from '@/types';
+import { FileHelper } from '@/helpers';
 
 export const useCurrentProfileStore = defineStore('profile', () => {
     const profile = ref<null | ProfileDto>(null);
@@ -24,8 +25,10 @@ export const useCurrentProfileStore = defineStore('profile', () => {
         }
     }
 
-    async function updateAvatar(name: string) {
+    async function updateAvatar(file: File) {
         try {
+            const name = FileHelper.encrypt(file.name, file);
+            await client.storage.from('avatars').upload(name, file, { cacheControl: '3600', upsert: false });
             const { data } = await client
                 .from('profiles')
                 .update({ avatar_url: name })
