@@ -12,7 +12,6 @@
 import Logo from '@/components/ui/Logo.vue';
 import Avatar from '@/components/ui/Avatar.vue';
 
-
 const supabase = useSupabaseClient();
 
 const items = [

@@ -23,13 +23,9 @@ const src = useGetPublicUrl(profile.value?.avatar_url);
 const client = useSupabaseClient();
 const user = useSupabaseUser();
 
-const uploadAvatar = async (name: string, file: File) => {
-    await client.storage.from('avatars').upload(name, file, { cacheControl: '3600', upsert: false });
-};
-
 const handleChange = async (file: File) => {
     const name = FileHelper.encrypt(file.name, file);
-    await uploadAvatar(name, file);
+    await client.storage.from('avatars').upload(name, file, { cacheControl: '3600', upsert: false });
     store.updateAvatar(name);
 };
 </script>
