@@ -3,7 +3,7 @@
         <h1 class='font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600'>Profile</h1>
         <div class='flex'>
             <AvatarUpload :src='src' @change='handleChange' />
-            <h2 class='font-medium leading-tight text-2xl mt-0 mb-2 ml-2'>Username: {{ user.username }}</h2>
+            <h2 class='font-medium leading-tight text-2xl mt-0 mb-2 ml-2'>Username: {{ profile.username }}</h2>
         </div>
     </Card>
 </template>
@@ -11,23 +11,34 @@
 <script setup lang='ts'>
 import Card from '@/components/Card.vue';
 import AvatarUpload from '@/components/inputs/AvatarUpload.vue';
-import { ProfileDto } from '@/types/profile';
-import { useGetFetchQuery, useGetPublicUrl, useUpdateAvatar, useUploadAvatar } from '@/hooks';
-import { ref } from '@vue/reactivity';
-import { PostgrestSingleResponse } from '@supabase/postgrest-js';
+import { useCurrentProfileStore, useGetPublicUrl } from '@/composables';
 import { FileHelper } from '@/helpers';
+import { storeToRefs } from 'pinia';
 
-const data = useGetFetchQuery('user') as PostgrestSingleResponse<ProfileDto>;
+const store = useCurrentProfileStore();
+const { profile } = storeToRefs(store);
 
-const user = ref<null | ProfileDto>(data?.data);
-const src = useGetPublicUrl(user.value?.avatar_url);
+const src = useGetPublicUrl(profile?.avatar_url);
 
-const { mutate: uploadAvatar } = useUploadAvatar();
-const { mutate: updateAvatar } = useUpdateAvatar();
+const supabase = useSupabaseClient();
+const currUser = useSupabaseUser();
+
+const uploadAvatar = async (name: string, file: File) => {
+    return await supabase.storage
+        .from('avatars')
+        .upload(name, file, { cacheControl: '3600', upsert: false });
+};
+
+const updateAvatar = async (name: string) => {
+    return supabase
+        .from('profiles')
+        .update({ avatar_url: name })
+        .eq('id', currUser.value?.id);
+};
 
 const handleChange = async (file: File) => {
     const name = FileHelper.encrypt(file.name, file);
-    uploadAvatar({ name, file });
-    updateAvatar({ name });
+    await uploadAvatar(name, file);
+    await updateAvatar(name);
 };
 </script>

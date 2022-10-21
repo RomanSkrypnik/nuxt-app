@@ -17,7 +17,6 @@
 
 <script setup lang='ts'>
 import img from '~/assets/images/avatar.png';
-import { ref } from '@vue/reactivity';
 
 interface Props {
     src?: string;

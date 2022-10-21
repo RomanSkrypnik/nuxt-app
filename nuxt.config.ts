@@ -1,6 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    modules: ['@nuxtjs/supabase', '@nuxtjs/tailwindcss'],
+    modules: ['@nuxtjs/supabase', '@nuxtjs/tailwindcss', '@pinia/nuxt'],
     css: ['~/assets/styles/main.scss'],
     build: {
         postcss: {
@@ -18,4 +18,4 @@ export default defineNuxtConfig({
     typescript: {
         strict: true,
     },
-})
+});

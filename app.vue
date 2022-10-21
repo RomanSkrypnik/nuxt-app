@@ -3,12 +3,7 @@
         <NuxtPage />
     </NuxtLayout>
 </template>
-<script setup>
-import { useQueryProvider } from 'vue-query';
-import { useAuthState } from './hooks';
-
-if(process.client) import('tw-elements');
-
-useQueryProvider();
+<script setup lang='ts'>
+import { useAuthState } from '@/composables';
 useAuthState();
 </script>
