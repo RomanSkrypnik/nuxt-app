@@ -18,27 +18,18 @@ import { storeToRefs } from 'pinia';
 const store = useCurrentProfileStore();
 const { profile } = storeToRefs(store);
 
-const src = useGetPublicUrl(profile?.avatar_url);
+const src = useGetPublicUrl(profile.value?.avatar_url);
 
-const supabase = useSupabaseClient();
-const currUser = useSupabaseUser();
+const client = useSupabaseClient();
+const user = useSupabaseUser();
 
 const uploadAvatar = async (name: string, file: File) => {
-    return await supabase.storage
-        .from('avatars')
-        .upload(name, file, { cacheControl: '3600', upsert: false });
-};
-
-const updateAvatar = async (name: string) => {
-    return supabase
-        .from('profiles')
-        .update({ avatar_url: name })
-        .eq('id', currUser.value?.id);
+    await client.storage.from('avatars').upload(name, file, { cacheControl: '3600', upsert: false });
 };
 
 const handleChange = async (file: File) => {
     const name = FileHelper.encrypt(file.name, file);
     await uploadAvatar(name, file);
-    await updateAvatar(name);
+    store.updateAvatar(name);
 };
 </script>

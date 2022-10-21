@@ -13,7 +13,7 @@ export const useCurrentProfileStore = defineStore('profile', () => {
             setLoading(true);
             const { data } = await client
                 .from('profiles')
-                .select('username, avatar_url')
+                .select('*')
                 .eq('id', user.value?.id)
                 .single();
             profile.value = data;
@@ -24,9 +24,22 @@ export const useCurrentProfileStore = defineStore('profile', () => {
         }
     }
 
+    async function updateAvatar(name: string) {
+        try {
+            const { data } = await client
+                .from('profiles')
+                .update({ avatar_url: name })
+                .eq('id', user.value?.id)
+                .single();
+            profile.value = data;
+        } catch (e) {
+            throw e;
+        }
+    }
+
     function setLoading(value: boolean) {
         loading.value = value;
     }
 
-    return { profile, loading, fetchProfile };
+    return { profile, loading, fetchProfile, updateAvatar };
 });
