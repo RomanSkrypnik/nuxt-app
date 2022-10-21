@@ -1,14 +1,11 @@
 <template>
     <div class='py-3 center mx-auto' :class='props.className'>
         <div class='bg-white rounded-lg text-center'>
-            <div class='mb-4'>
+            <label>
                 <img
                     class='w-auto mx-auto rounded-full object-cover object-center image'
                     :src='avatar ?? img'
                     alt='Avatar Upload' />
-            </div>
-            <label class='cursor-pointer mt-6'>
-                <span class='mt-2 text-base leading-normal px-4 py-2 bg-blue-500 text-white text-sm rounded-full'>Select Avatar</span>
                 <input type='file' class='hidden' @change='handleChange' />
             </label>
         </div>

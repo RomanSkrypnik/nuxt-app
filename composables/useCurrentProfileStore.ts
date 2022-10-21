@@ -25,16 +25,20 @@ export const useCurrentProfileStore = defineStore('profile', () => {
         }
     }
 
+    async function updateProfile(payload: Partial<ProfileDto>) {
+        try {
+            const { data } = await client.from('profiles').upsert(payload, { returning: 'minimal' }).eq('id', user.value?.id).single();
+            profile.value = data;
+        } catch (e) {
+            throw e;
+        }
+    }
+
     async function updateAvatar(file: File) {
         try {
             const name = FileHelper.encrypt(file.name, file);
             await client.storage.from('avatars').upload(name, file, { cacheControl: '3600', upsert: false });
-            const { data } = await client
-                .from('profiles')
-                .update({ avatar_url: name })
-                .eq('id', user.value?.id)
-                .single();
-            profile.value = data;
+            await updateProfile({ avatarUrl: name });
         } catch (e) {
             throw e;
         }

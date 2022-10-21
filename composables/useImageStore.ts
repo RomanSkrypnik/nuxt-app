@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { ImageDto } from '@/types';
+import { FileHelper } from '@/helpers';
 
 export const useImageStore = defineStore('image', () => {
     const images = ref<ImageDto[]>([]);
@@ -21,7 +22,15 @@ export const useImageStore = defineStore('image', () => {
         }
     }
 
-    async function upload
+    async function uploadImage(file: File) {
+        try {
+            const encrypted = FileHelper.encrypt(file.name, file);
+            await client.storage.from('images').upload(encrypted, file);
+            const { data } = await client.from('images').upsert();
+        } catch (e) {
+            throw e;
+        }
+    }
 
-    return { images, image, loading, fetchImages };
+    return { images, image, loading, fetchImages, uploadImage };
 });
