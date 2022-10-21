@@ -29,7 +29,7 @@ export const useCurrentProfileStore = defineStore('profile', () => {
         try {
             const { data } = await client
                 .from('profiles')
-                .upsert({ ...payload, id: user.value?.id }, { returning: 'minimal' })
+                .update({ ...payload, id: user.value?.id })
                 .single();
             profile.value = data;
         } catch (e) {

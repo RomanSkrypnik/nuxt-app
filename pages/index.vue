@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if='!loading'>
-            <ProfileCard v-if='profile' />
+            <ProfileCard v-if='profile.username' />
             <UpdateUserForm v-else />
         </div>
     </div>
